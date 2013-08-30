@@ -1,4 +1,6 @@
 function XboxDash( ) {
+	
+  this.GAME_PADDING = 10;
 
   this.init = function( ) {
 	
@@ -11,13 +13,16 @@ function XboxDash( ) {
 
   this.initGamePositions = function( ) {
 
+    var parent = this;
+
     $( '.game' ).each( function( index, value ) {
 
       console.log( index + ': ' + value );
       console.log( $( this ) );
 
      $( this ).css( {
-       'left': index * 320 + 'px'
+       'left': 100 + index * ( 320 + parent.GAME_PADDING ) + 'px',
+       'z-index': -index
      } )
 
     } );
@@ -34,12 +39,14 @@ function XboxDash( ) {
     
     $( '.box' ).click( $.proxy( this.onGameClick, this) );
 
+    $( '.box' ).css({ width: 320, height: 450 });
+
 	$( '.box' ).hover(
 	    function( ) {
-            $( this ).transition({ scale: 1.1 });
+            $( this ).transition({ width: 1.1 * 320, height: 1.1 * 450, x: -0.05 * 320, y: -0.05 * 450 });
 	    },
 	    function( ) {
-            $( this ).transition({ scale: 1 });
+            $( this ).transition({ width: 320, height: 450, x: 0, y: 0 });
 	    }
 	);
 
