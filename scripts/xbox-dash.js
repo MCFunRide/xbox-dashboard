@@ -8,8 +8,15 @@ function XboxDash( ) {
 	
     console.log('init( )');
 	
+	this.initParse();
 	this.initGamePositions( );
 	this.enableMouseEvents( );
+
+  };
+
+  this.initParse = function( ) {
+
+    Parse.initialize("TlmkVItvqaT8TUWkjc8c0vq073BJrcJWNsEjffAd", "N4qvHqHS4sMcZEEJXKBvKtnsXO0TVutYrcm7469s");
 
   };
 
@@ -53,7 +60,7 @@ function XboxDash( ) {
     console.log( 'onGameClick( )' );
 
     if ( this.currentGame == "cod" ) {
-      this.selectGame( '' );
+      this.selectGame( 'dash' );
     } else {
       this.selectGame( 'cod' );
     }
@@ -64,6 +71,8 @@ function XboxDash( ) {
 
     this.currentGame = title;
 
+	this.sendParseData( this.currentGame );
+
 	var opacity = ( title == "cod" ? 0.1 : 1 );
     $( '.game' ).each( function( index, value ) {
 
@@ -72,6 +81,18 @@ function XboxDash( ) {
       }
 
 	} );
+
+  };
+
+  this.sendParseData = function( title ) {
+
+	var TestObject = Parse.Object.extend('TestObject');
+	var testObject = new TestObject();
+	testObject.save({game: title}, {
+	  success: function(object) {
+	    console.log('saved data');
+	  }
+	});
 
   };
 
