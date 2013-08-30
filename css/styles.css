@@ -1,0 +1,17 @@
+body {
+  background: url(../images/gradient-background.png) repeat-x;
+  background-color: #8a8b8f;
+}
+
+.games {
+  /*margin-left: 150px;*/
+  margin-top: 200px;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+}
+
+.game {
+  /*display: inline-block;*/
+  position: fixed;
+}
