@@ -1,6 +1,8 @@
 function XboxDash( ) {
 	
-  this.GAME_PADDING = 10;
+  this.GAME_PADDING = 8;
+
+  this.currentGame = '';
 
   this.init = function( ) {
 	
@@ -29,12 +31,6 @@ function XboxDash( ) {
 
   };
 
-  this.initGamePosition = function( index, value ) {
-
-    console.log( 'initGamePositions( ' + index + ', ' + value + ' )');
-	
-  };
-
   this.enableMouseEvents = function( ) {
     
     $( '.box' ).click( $.proxy( this.onGameClick, this) );
@@ -43,10 +39,10 @@ function XboxDash( ) {
 
 	$( '.box' ).hover(
 	    function( ) {
-            $( this ).transition({ width: 1.1 * 320, height: 1.1 * 450, x: -0.05 * 320, y: -0.05 * 450 });
+            $( this ).transition( { width: 1.1 * 320, height: 1.1 * 450, x: -0.05 * 320, y: -0.05 * 450 } );
 	    },
 	    function( ) {
-            $( this ).transition({ width: 320, height: 450, x: 0, y: 0 });
+            $( this ).transition( { width: 320, height: 450, x: 0, y: 0 } );
 	    }
 	);
 
@@ -55,6 +51,27 @@ function XboxDash( ) {
   this.onGameClick = function( ) {
 
     console.log( 'onGameClick( )' );
+
+    if ( this.currentGame == "cod" ) {
+      this.selectGame( '' );
+    } else {
+      this.selectGame( 'cod' );
+    }
+
+  };
+
+  this.selectGame = function( title ) {
+
+    this.currentGame = title;
+
+	var opacity = ( title == "cod" ? 0.1 : 1 );
+    $( '.game' ).each( function( index, value ) {
+
+      if ( index > 0 ) {
+        $( this ).transition( { opacity: opacity }, 500 );
+      }
+
+	} );
 
   };
 
