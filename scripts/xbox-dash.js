@@ -1,13 +1,13 @@
 function XboxDash( ) {
-	
+
   this.GAME_PADDING = 8;
 
   this.currentGame = '';
 
   this.init = function( ) {
-	
+
     console.log('init( )');
-	
+
 	this.initParse();
 	this.initGamePositions( );
 	this.enableMouseEvents( );
@@ -39,7 +39,7 @@ function XboxDash( ) {
   };
 
   this.enableMouseEvents = function( ) {
-    
+
     $( '.box' ).click( $.proxy( this.onGameClick, this) );
 
     $( '.box' ).css({ width: 320, height: 450 });
@@ -86,9 +86,9 @@ function XboxDash( ) {
 
   this.sendParseData = function( title ) {
 
-	var TestObject = Parse.Object.extend('TestObject');
-	var testObject = new TestObject();
-	testObject.save({game: title}, {
+	var GameObject = Parse.Object.extend('GameObject');
+	var gameObject = new GameObject();
+	gameObject.save({game: title}, {
 	  success: function(object) {
 	    console.log('saved data');
 	  }
